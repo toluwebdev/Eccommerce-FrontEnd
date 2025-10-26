@@ -3,6 +3,7 @@ import { shopContext } from "../context/ShopContext";
 import { Link } from "react-router-dom";
 const ProductItem = ({ id, image, name, price }) => {
   const { currency } = useContext(shopContext);
+  
   return (
     <Link className="text-gray-700 cursor-pointer" to={`/product/${id}`}>
       <div className="overflow-hidden">
@@ -11,7 +12,9 @@ const ProductItem = ({ id, image, name, price }) => {
           src={image[0]}
           alt=""
         />
-        <p className="pt-3 pb-1 text-sm">{name}</p>
+        <p className="pt-3 pb-1 text-sm">
+          {name.length > 25 ? name.slice(0, 25) + "..." : name}
+        </p>
         <p className="text-sm font-medium">
           {currency}
           {price}
